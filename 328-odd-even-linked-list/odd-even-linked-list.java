@@ -16,13 +16,13 @@ class Solution {
 
         ListNode odd = head, even = head.next, evenHead = even;
 
-        while(even != null && even.next != null){
-            odd.next = even.next;
-            odd = odd.next;
+        // while(even != null && even.next != null){
+        //     odd.next = even.next;
+        //     odd = odd.next;
 
-            even.next = even.next.next;
-            even = even.next;
-        }
+        //     even.next = even.next.next;
+        //     even = even.next;
+        // }
 
         while(even != null && even.next != null){
             odd.next = odd.next.next;
