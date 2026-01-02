@@ -17,6 +17,12 @@ The goal is to stay consistent, improve problem-solving, and prepare for coding 
 
 ---
 
+## 📢 My Portfolio   
+- Check it out: https://balraj-s-portfolio.onrender.com/
+
+---
+
 ## 📢 Connect with Me   
-- LinkedIn: https://www.linkedin.com/in/balraj-choure-621a58297/
+- Twitter: https://x.com/balrajjchouree
+- LinkedIn: https://www.linkedin.com/in/balrajjchouree/
 
