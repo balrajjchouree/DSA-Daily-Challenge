@@ -1,23 +1,37 @@
 class Solution {
     public int[][] merge(int[][] intervals) {
-        int n = intervals.length;
-
-        Arrays.sort(intervals, new Comparator<int[]>() {
-            public int compare(int[] a, int[] b){
-                return a[0] - b[0];
-            }
-        });
-
-        List<int[]> ans = new ArrayList<>();
-
-        for (int i = 0; i < n; i++) {
-            if (ans.isEmpty() || intervals[i][0] > ans.get(ans.size() - 1)[1]) {
-                ans.add(new int[]{intervals[i][0], intervals[i][1]});
-            } else {
-                ans.get(ans.size() - 1)[1] = Math.max(ans.get(ans.size() - 1)[1], intervals[i][1]);
-            }
+        if(intervals.length <= 1){
+            return intervals;
         }
 
-        return ans.toArray(new int[ans.size()][]);
+        List<int[]> intervalList = new ArrayList<>(Arrays.asList(intervals));
+        boolean mergeSomething = true;
+
+        while(mergeSomething){
+            mergeSomething = false;
+
+            List<int[]> tempList = new ArrayList<>();
+
+            while(!intervalList.isEmpty()){
+                int[] current = intervalList.remove(0); 
+                boolean isMerged = false;
+
+                for(int i = 0; i < intervalList.size(); i++){
+                    int[] other = intervalList.get(i);
+
+                    if(Math.max(current[0], other[0]) <= Math.min(current[1], other[1])){
+                        current = new int[]{Math.min(current[0], other[0]), Math.max(current[1], other[1])};
+                        intervalList.remove(i);
+                        isMerged = true;
+                        mergeSomething = true;
+                        break;
+                    }
+                }
+                tempList.add(current);
+            }
+            intervalList = tempList;
+        }
+
+        return intervalList.toArray(new int[intervalList.size()][]);
     }
 }
