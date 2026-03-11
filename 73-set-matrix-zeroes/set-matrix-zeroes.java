@@ -3,25 +3,26 @@ class Solution {
         int n = matrix.length;
         int m = matrix[0].length;
 
-        List<int[]> positions = new ArrayList<>();
+        int[] row = new int[n];
+        int[] col = new int[m];
+        
+        Arrays.fill(row, -1);
+        Arrays.fill(col, -1);
 
         for(int i = 0; i < n; i++){
             for(int j = 0; j < m; j++){
                 if(matrix[i][j] == 0){
-                    positions.add(new int[]{i, j});
+                    row[i] = 0;
+                    col[j] = 0;
                 }
             }
         }
 
-        for(int[] pos : positions){
-            int x = pos[0], y = pos[1];
-
-            for(int i = 0; i < n; i++){
-                matrix[i][y] = 0;
-            }
-
+        for(int i = 0; i < n; i++){
             for(int j = 0; j < m; j++){
-                matrix[x][j] = 0;
+                if(row[i] == 0 || col[j] == 0 && matrix[i][j] != 0){
+                    matrix[i][j] = 0;
+                }
             }
         }
     }
