@@ -5,21 +5,19 @@ class Solution {
 
         ArrayList<Integer> list = new ArrayList<>();
 
-        int startRow = 0;
-        int endRow = n - 1;
-        int startCol = 0;
-        int endCol = m - 1;
+        int startRow = 0, startCol = 0;
+        int endRow = n - 1, endCol = m - 1;
 
         while(startRow <= endRow && startCol <= endCol){
             for(int j = startCol; j <= endCol; j++){
-            list.add(matrix[startRow][j]);
+                list.add(matrix[startRow][j]);
             }
 
             for(int i = startRow + 1; i <= endRow; i++){
                 list.add(matrix[i][endCol]);
             }
 
-            for(int j = endCol - 1; j >= startCol; j--){
+            for(int j = endCol - 1; j >= startRow; j--){
                 if(startRow == endRow){
                     break;
                 }
@@ -30,14 +28,15 @@ class Solution {
                 if(startCol == endCol){
                     break;
                 }
-                list.add(matrix[i][startCol]);
+                list.add(matrix[i][startRow]);
             }
 
-            startCol++;
-            endCol--;
             startRow++;
+            endCol--;
             endRow--;
+            startCol++;
         }
+
         return list;
     }
 }
