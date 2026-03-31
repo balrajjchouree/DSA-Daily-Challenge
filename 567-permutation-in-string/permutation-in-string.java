@@ -1,4 +1,24 @@
 class Solution {
+    private boolean isAnagram(String s1, String s2){
+        int[] count = new int[26];
+
+        for(char ch : s1.toCharArray()){
+            count[ch - 'a']++;
+        }
+
+        for(char ch : s2.toCharArray()){
+            count[ch - 'a']--;
+        }
+
+        for(int i = 0; i < 26; i++){
+            if(count[i] != 0){
+                return false;
+            }
+        }
+
+        return true;
+    }
+    
     public boolean checkInclusion(String s1, String s2) {
         int n = s1.length();
         int m = s2.length();
@@ -7,14 +27,9 @@ class Solution {
             return false;
         }
 
-        char[] s1Arr = s1.toCharArray();
-        Arrays.sort(s1Arr);
-
         for(int i = 0; i <= m - n; i++){
-            char[] temp = s2.substring(i, i + n).toCharArray();
-            Arrays.sort(temp);
-
-            if(Arrays.equals(temp, s1Arr)){
+            String sub = s2.substring(i, i + n);
+            if(isAnagram(sub, s1)){
                 return true;
             }
         }
